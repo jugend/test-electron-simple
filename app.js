@@ -1,5 +1,9 @@
 const electron = require('electron')
-const client = require('electron-connect').client
+const path = require('path')
+
+require('electron-reload')(__dirname, {
+  electron: path.join(__dirname, 'node_modules', '.bin', 'electron')
+})
 
 const app = electron.app
 const BrowserWindow = electron.BrowserWindow
@@ -19,6 +23,4 @@ app.on('ready', function() {
   mainWindow.on('closed', function() {
     mainWindow = null
   })
-
-  client.create(mainWindow)
 })
